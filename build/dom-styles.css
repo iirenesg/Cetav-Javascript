@@ -1,0 +1,150 @@
+html {
+  background-color: #F7F5CC;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.btn-wrap {
+  margin: 20px 0 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  cursor: pointer;
+  position:relative;
+  text-decoration:none;
+  color:white;
+  font-weight:normal;
+  padding: 8px 12px;
+  display:inline-flex;
+  align-items:center;
+  font-size: 16px;
+  background-color: #ff2b63;
+  border-radius:6px;
+  z-index:2;
+  border: none;
+}
+
+.button:before {
+  content:"";
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  border:3px #ff2b63 dashed;
+  z-index:-1;
+  transition: top .3s ease,bottom .3s ease,
+              left .3s ease,right .3s ease;
+}
+.button:hover:before{
+  top:-5px;left:-5px;right:-5px;bottom:-5px;
+}
+
+.section {
+  display: none;
+}
+
+.section h2 {
+  margin-bottom: 50px;
+}
+
+.show {
+  display: block;
+}
+
+.box {
+  display: inline-block;
+  min-width: 100px;
+  height: 25px;
+  background-color: #12cad0;
+  padding: 10px;
+}
+
+.box code {
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.pushed {
+  margin-left: 30px;
+}
+
+.pushed-m {
+  margin-left: 60px;
+}
+
+.pushed-l {
+  margin-left: 100px;
+}
+
+.container {
+  border:3px #ff2b63 dashed;
+  padding: 20px;
+}
+
+.container code {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.code-wrap code {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.box-wrap {
+  display: flex;
+}
+
+.vertical-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.push-top {
+  margin-top: 20px;
+}
+
+.img {
+  width: 150px;
+}
+
+#s0 {
+  text-align: center;
+}
+
+#s0 img {
+  max-width: 800px;
+  display: inline-block;
+  margin-top: 50px;
+}
+
+#s1, #s2 {
+  margin-top: 100px;
+}
+
+.use-dataset::before {
+  content: attr(data-content);
+}
+
+div[data-content = 'some text'] {
+  background-color: green;
+}
