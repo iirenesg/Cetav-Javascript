@@ -56,7 +56,7 @@
 
   <section class="bg-yellow">
     <h2 class="slide-title">Promise status</h2>
-    <img style="max-width: 600px" src="/images/promise-status.png" alt="">
+    <img style="max-width: 600px" src="../images/promise-status.png" alt="">
     <p class="hint">The promise object returned by the new Promise constructor has these internal properties:<br>- state: initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
       <br>- result: initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.</p>
   </section>
@@ -73,7 +73,7 @@
         });
       </code>
     </pre>
-    <img style="max-width: 600px" src="/images/promise-fulfilled.png" alt="">
+    <img style="max-width: 600px" src="../images/promise-fulfilled.png" alt="">
     <p class="hint">The <i>resolve</i> callback returns the data promised.</p>
   </section>
 
@@ -87,7 +87,7 @@
         });
       </code>
     </pre>
-    <img style="max-width: 600px" src="/images/promise-error.png" alt="">
+    <img style="max-width: 600px" src="../images/promise-error.png" alt="">
     <p class="hint">The <i>reject</i> callback returns an error. It can be any value, but it is recommended to return an instance of <i>Error</i>.</p>
   </section>
 
@@ -216,7 +216,7 @@
           });
         </code>
       </pre>
-      <img style="margin-left: 40px; max-height: 500px" src="/images/promise-chain.png" alt="">
+      <img style="margin-left: 40px; max-height: 500px" src="../images/promise-chain.png" alt="">
     </div>
   </section>
 
@@ -245,7 +245,7 @@
           });
         </code>
       </pre>
-      <img style="margin-left: 40px; max-width: 500px" src="/images/promise-not-chain.png" alt="">
+      <img style="margin-left: 40px; max-width: 500px" src="../images/promise-not-chain.png" alt="">
     </div>
     <p class="hint">Calling several handlers on the promise is not chaining, since they won't pass the value to each other.</p>
   </section>
