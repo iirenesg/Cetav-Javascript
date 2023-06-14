@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Javascript IV</title>
+  <title>Javascript III</title>
   <link rel="stylesheet" type="text/css" href="../build/build.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
@@ -11,69 +11,146 @@
 <body>
 <article class="deck">
 
-  <section class="bg-orange">
-    <h1>Singleton Pattern</h1>
+  <section class="bg-yellow">
+    <h1>Singleton</h1>
+    <img style="max-width: 900px" src="../images/singleton.png" alt="">
   </section>
 
-  <section class="bg-orange">
+  <section class="bg-yellow">
+    <h2 class="slide-title">The problem</h2>
+    <p class="hint">The singleton pattern is useful when we need to control access to a piece of the code, ensuring that we have only one copy of it.</p>
+    <p class="hint">The singleton pattern also provides us with a global access point to that instance, so that we can access it from everywhere in the application, but protecting it from being overwritten.</p>
+  </section>
+
+  <section class="bg-yellow">
     <h2 class="slide-title">Singleton</h2>
-    <h3 class="slide-subtitle">Class declaration</h3>
     <pre>
       <code class="language-javascript">
-        // This is the regular class
-        class State {
+        let instance;
+        let counter = 0;
+        
+        class Counter {
           constructor() {
-            this.orders = [];
-            this.user = {};
-          }
-
-          addOrder(order) {
-            this.orders.push(order)
-          }
-        }
-
-        // This is the singleton
-        class StateSingleton {
-          constructor() {
-            if (!StateSingleton.instance) {
-              StateSingleton.instance = new State();
+            if (instance) {
+              throw new Error("You can only create one instance!");
             }
+            instance = this;
           }
-
-          getStateSingleton() {
-            return StateSingleton.instance
+        
+          getInstance() {
+            return this;
+          }
+        
+          getCount() {
+            return counter;
+          }
+        
+          increment() {
+            return ++counter;
+          }
+        
+          decrement() {
+            return --counter;
           }
         }
-
-        export default StateSingleton;
+        
+        const singletonCounter = Object.freeze(new Counter());
+        export default singletonCounter;
       </code>
     </pre>
   </section>
 
-  <section class="bg-orange">
+  <section class="bg-yellow">
     <h2 class="slide-title">Singleton</h2>
     <h3 class="slide-subtitle">Usage</h3>
     <pre>
       <code class="language-javascript">
-        // In one file
-        import State from './State.js';
-        const state = new State().getStateSingleton();
+        // In some place of the app
+        import counter from './counter-state.js';
 
-        const renderOrders = (orders) => {
-          // Some code here
+        counter.increment();
+        console.log("Counter total: ", counter.getCount());
+
+        // In another place of the app
+        import counter from './counter-state.js';
+        
+        counter.decrement();
+        console.log("Counter total: ", counter.getCount());
+      </code>
+    </pre>
+  </section>
+
+  <section class="bg-yellow">
+    <h2 class="slide-title">Is the singleton pattern useful in javascript?</h2>
+    <p class="hint">In many OOP languages, it's not possible to create an object directly, you need to create a class that in turn creates the object. Due to the nature of classes, if you want to restrict the number of copies of the object, you need to implement singleton logic so that only one copy can be instantiated.</p>
+    <p class="hint">In javascript, clases are a way to reuse code to create multiple instances of an object. If you want to create only one object, you can do it directly, and avoid all the boilerplate of implementing a singleton class.</p>
+  </section>
+
+  <section class="bg-yellow">
+    <h2 class="slide-title">Singleton in javascript</h2>
+    <pre>
+      <code class="language-javascript">
+        let count = 0;
+
+        const counter = {
+          increment() {
+            return ++count;
+          },
+          decrement() {
+            return --count;
+          },
+          getCount() {
+            return count;
+          }
         };
 
-        renderOrders(state.orders);
+        Object.freeze(counter);
+        export default counter;
+      </code>
+    </pre>
+  </section>
 
-        // In another file
-        import State from './State.js';
-        const state = new State().getStateSingleton();
+  <section class="bg-yellow">
+    <h2 class="slide-title">Singleton in javascript</h2>
+    <h3 class="slide-subtitle">Usage</h3>
+    <pre>
+      <code class="language-javascript">
+        // In some place of the app
+        import counter from './counter-state.js';
 
-        const handleOrder = (event) => {
-          state.addOrder(event.target.value);
+        counter.increment();
+        console.log("Counter total: ", counter.getCount());
+
+        // In another place of the app
+        import counter from './counter-state.js';
+        
+        counter.decrement();
+        console.log("Counter total: ", counter.getCount());
+      </code>
+    </pre>
+  </section>
+
+  <section class="bg-yellow">
+    <h2 class="slide-title">State management</h2>
+    <pre>
+      <code class="language-javascript">
+        const state = {};
+    
+        function getState() {
+          return { ...state };
+        }
+    
+        function setState(newState) {
+          state = { ...state, ...newState };
+        }
+    
+        return {
+          getState,
+          setState,
         };
       </code>
     </pre>
+    <p class="hint">When building a state management module, it's important to keep it decoupled from any other logic in the application.<br /> Also, it's a good practice to keep the state private, and make available only methods to get or set the state.</p>
   </section>
 
 <script src="../build/build.js"></script>
